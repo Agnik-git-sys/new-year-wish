@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hey You 🐾</title>
+
+  <!-- Tailwind -->
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+
+  <!-- Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    /* cute floating animation */
+    @keyframes float {
+      0%   { transform: translateY(0); }
+      50%  { transform: translateY(-12px); }
+      100% { transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body class="font-['Inter'] bg-gradient-to-br from-[#120c2e] via-[#0b0d14] to-[#070712]
+             min-h-screen flex items-center justify-center overflow-hidden">
+
+  <section class="text-center px-6">
+
+    <!-- CAT IMAGE -->
+    <div class="mx-auto w-48 sm:w-56 animate-[float_3s_ease-in-out_infinite]">
+      <img src="cat.gif" alt="cute cat" class="w-full drop-shadow-xl" />
+    </div>
+
+    <!-- TEXT -->
+    <h1 class="mt-6 text-2xl sm:text-3xl font-semibold text-[#e6e9f0]">
+      psst… wait 🐱
+    </h1>
+
+    <p class="mt-2 text-[#b7bdd6]">
+      the cat says you should follow me on Instagram
+    </p>
+
+    <!-- FOLLOW BUTTON -->
+    <button
+      id="followBtn"
+      class="mt-6 px-8 py-3 rounded-xl
+             bg-gradient-to-r from-pink-400 to-violet-500
+             text-white font-medium
+             shadow-lg shadow-pink-500/30
+             hover:scale-[1.05]
+             transition">
+      Follow krle 😒
+    </button>
+    </div>
+
+  </section>
+
+  <script>
+    const followBtn = document.getElementById("followBtn");
+    const qrBox = document.getElementById("qrBox");
+
+    const INSTAGRAM_URL = "https://www.instagram.com/oyeeee_agnik/";
+
+    // Button → instant redirect
+    followBtn.addEventListener("click", () => {
+      window.open(INSTAGRAM_URL, "_blank");
+    });
+
+    // QR → also redirect
+    qrBox.addEventListener("click", () => {
+      window.open(INSTAGRAM_URL, "_blank");
+    });
+  </script>
+
+</body>
+</html>
