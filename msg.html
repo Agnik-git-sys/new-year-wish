@@ -17,7 +17,8 @@
 
 <body class="font-['Inter'] overflow-hidden">
 
-<div class="relative min-h-screen flex items-center justify-center
+<!-- ================= ROOT ================= -->
+<div class="relative min-h-screen flex flex-col items-center justify-center
             bg-gradient-to-br from-[#120c2e] via-[#0b0d14] to-[#070712]
             px-4">
 
@@ -26,33 +27,37 @@
               bg-[radial-gradient(circle_at_50%_30%,rgba(124,58,237,0.18),transparent_60%)]">
   </div>
 
-  <!-- ENVELOPE -->
-  <div id="envelope"
-       class="relative z-10
-              w-64 sm:w-72 md:w-80
-              h-40 sm:h-48 md:h-52
-              rounded-2xl shadow-2xl
-              overflow-hidden border border-white/20
-              flex items-center justify-center">
+  <!-- ================= ENVELOPE + BUTTON WRAPPER ================= -->
+  <div class="relative z-10 flex flex-col items-center justify-center">
 
-    <div class="absolute inset-0 bg-gradient-to-br
-                from-pink-300 via-rose-200 to-violet-300"></div>
+    <!-- ENVELOPE -->
+    <div id="envelope"
+         class="relative
+                w-64 sm:w-72 md:w-80
+                h-40 sm:h-48 md:h-52
+                rounded-2xl shadow-2xl
+                overflow-hidden border border-white/20
+                flex items-center justify-center">
 
-    <span class="relative text-3xl sm:text-4xl drop-shadow-md">✨</span>
+      <div class="absolute inset-0 bg-gradient-to-br
+                  from-pink-300 via-rose-200 to-violet-300"></div>
+
+      <span class="relative text-3xl sm:text-4xl drop-shadow-md">✨</span>
+    </div>
+
+    <!-- OPEN BUTTON -->
+    <button id="openBtn"
+            class="mt-6 opacity-0
+                   px-6 py-3 rounded-xl
+                   bg-[#8b5cf6]
+                   text-white font-medium
+                   shadow-lg shadow-[#8b5cf6]/20">
+      Open
+    </button>
+
   </div>
 
-  <!-- OPEN BUTTON -->
-  <button id="openBtn"
-          class="absolute bottom-16 sm:bottom-20
-                 opacity-0
-                 px-6 py-3 rounded-xl
-                 bg-[#8b5cf6]
-                 text-white font-medium
-                 shadow-lg shadow-[#8b5cf6]/20">
-    Open
-  </button>
-
-  <!-- LETTER (CARD) -->
+  <!-- ================= LETTER ================= -->
   <div id="letter"
        class="hidden absolute z-20
               w-full max-w-md sm:max-w-lg
@@ -90,6 +95,7 @@
 
 </div>
 
+<!-- ================= SCRIPT ================= -->
 <script>
   /* ---------- STORAGE ---------- */
   const rawName = localStorage.getItem("username") || "";
