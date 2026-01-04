@@ -15,10 +15,10 @@
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 </head>
 
-<body class="font-['Inter'] overflow-hidden">
+<body class="font-['Inter'] overflow-hidden bg-[#070712]">
 
 <!-- ================= ROOT ================= -->
-<div class="relative min-h-screen flex flex-col items-center justify-center
+<div class="relative min-h-[100svh] flex items-center justify-center
             bg-gradient-to-br from-[#120c2e] via-[#0b0d14] to-[#070712]
             px-4">
 
@@ -27,14 +27,16 @@
               bg-[radial-gradient(circle_at_50%_30%,rgba(124,58,237,0.18),transparent_60%)]">
   </div>
 
-  <!-- ================= ENVELOPE + BUTTON WRAPPER ================= -->
-  <div class="relative z-10 flex flex-col items-center justify-center">
+  <!-- ================= CENTER STACK ================= -->
+  <div class="relative z-10 flex flex-col items-center justify-center
+              gap-4 sm:gap-6">
 
     <!-- ENVELOPE -->
     <div id="envelope"
          class="relative
-                w-64 sm:w-72 md:w-80
-                h-40 sm:h-48 md:h-52
+                w-56 h-36
+                sm:w-64 sm:h-40
+                md:w-72 md:h-48
                 rounded-2xl shadow-2xl
                 overflow-hidden border border-white/20
                 flex items-center justify-center">
@@ -47,10 +49,10 @@
 
     <!-- OPEN BUTTON -->
     <button id="openBtn"
-            class="mt-6 opacity-0
+            class="opacity-0
                    px-6 py-3 rounded-xl
                    bg-[#8b5cf6]
-                   text-white font-medium
+                   text-white text-sm sm:text-base font-medium
                    shadow-lg shadow-[#8b5cf6]/20">
       Open
     </button>
@@ -60,14 +62,14 @@
   <!-- ================= LETTER ================= -->
   <div id="letter"
        class="hidden absolute z-20
-              w-full max-w-md sm:max-w-lg
+              w-[92%] max-w-md sm:max-w-lg
               bg-[#121526]
               border border-[#2a2e45]
               rounded-2xl p-6 sm:p-8
               shadow-2xl text-center
               opacity-0 scale-95">
 
-    <h1 class="text-xl sm:text-2xl font-semibold text-[#e6e9f0]">
+    <h1 class="text-lg sm:text-2xl font-semibold text-[#e6e9f0]">
       Happy New Year 🎉
     </h1>
 
@@ -97,19 +99,16 @@
 
 <!-- ================= SCRIPT ================= -->
 <script>
-  /* ---------- STORAGE ---------- */
   const rawName = localStorage.getItem("username") || "";
   const name = rawName.trim();
   const lowerName = name.toLowerCase();
 
-  /* ---------- ELEMENTS ---------- */
   const envelope   = document.getElementById("envelope");
   const openBtn    = document.getElementById("openBtn");
   const letter     = document.getElementById("letter");
   const mainLetter = document.getElementById("main-letter");
   const secretBtn  = document.getElementById("secretBtn");
 
-  /* ---------- LETTER CONTENT ---------- */
   mainLetter.innerHTML = `
     Dear <span class="text-violet-400 font-medium">${name || "You"}</span>,<br/><br/>
     As this new year begins, I hope it brings you calm mornings,
@@ -123,33 +122,30 @@
     and let it stay.
   `;
 
-  /* ---------- ENTRANCE ---------- */
   gsap.from(envelope, {
-    y: -160,
-    scale: 0.85,
+    y: -100,
+    scale: 0.9,
     opacity: 0,
-    duration: 1.1,
+    duration: 1,
     ease: "power3.out"
   });
 
   gsap.to(openBtn, {
     opacity: 1,
-    y: -8,
-    delay: 1,
-    duration: 0.6,
+    y: -6,
+    delay: 0.9,
+    duration: 0.5,
     ease: "power3.out"
   });
 
-  /* ---------- OPEN LETTER ---------- */
   openBtn.addEventListener("click", () => {
-
     const tl = gsap.timeline({ ease: "power3.inOut" });
 
     tl.to(envelope, {
       opacity: 0,
-      scale: 0.9,
-      y: -20,
-      duration: 0.5
+      scale: 0.92,
+      y: -16,
+      duration: 0.45
     })
     .add(() => {
       envelope.classList.add("hidden");
@@ -158,21 +154,20 @@
     .to(letter, {
       opacity: 1,
       scale: 1,
-      duration: 0.7
+      duration: 0.6
     });
 
-    gsap.to(openBtn, { opacity: 0, duration: 0.3 });
+    gsap.to(openBtn, { opacity: 0, duration: 0.25 });
 
-    // Reveal secret button ONLY for Madhumita
     if (lowerName === "madhumita") {
       setTimeout(() => {
         secretBtn.classList.remove("hidden");
         gsap.from(secretBtn, {
           opacity: 0,
-          y: 20,
-          duration: 0.6
+          y: 16,
+          duration: 0.5
         });
-      }, 3200);
+      }, 2800);
     }
   });
 </script>
